@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Kurs.Models
+namespace Kurs.Entities
 {
     public partial class TblNotlar
     {

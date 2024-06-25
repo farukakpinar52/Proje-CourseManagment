@@ -2,31 +2,26 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Kurs.Entities;
 
-namespace Kurs.Models
+namespace Kurs.Data
 {
     public partial class DbKursContext : DbContext
     {
-        private static DbKursContext instance;
-        public static DbKursContext GetInstance { 
-        get
-            {
-                return instance;
-            }
-        }
         private DbKursContext()
         {
+            
         }
-        static DbKursContext()
-        {
-            instance= new DbKursContext();
-        }
+
         public DbKursContext(DbContextOptions<DbKursContext> options)
             : base(options)
         {
         }
 
         public virtual DbSet<TblDersler> TblDerslers { get; set; } = null!;
+        public virtual DbSet<SPEntity> SPEntities { get; set; } = null!;
+
+        public virtual DbSet<TblKulupler> TblKuluplers { get; set; } = null!;
         public virtual DbSet<TblNotlar> TblNotlars { get; set; } = null!;
         public virtual DbSet<TblOgrenciler> TblOgrencilers { get; set; } = null!;
 
@@ -35,7 +30,7 @@ namespace Kurs.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-P7KA77K\\SQLEXPRESS;User ID=sa;Password=1234;Database=DbKurs;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-P7KA77K\\SQLEXPRESS;Database=DbKurs;User Id=sa;Password=1234;");
             }
         }
 
@@ -47,6 +42,23 @@ namespace Kurs.Models
 
                 entity.Property(e => e.Adi)
                     .HasMaxLength(25)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<SPEntity>().HasNoKey();
+
+            modelBuilder.Entity<TblKulupler>(entity =>
+            {
+                entity.HasKey(e => e.KulupId);
+
+                entity.ToTable("TBL_Kulupler");
+
+                entity.Property(e => e.KulupId)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("KulupID");
+
+                entity.Property(e => e.KulupAd)
+                    .HasMaxLength(50)
                     .IsUnicode(false);
             });
 

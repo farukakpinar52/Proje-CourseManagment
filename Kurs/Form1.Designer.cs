@@ -63,6 +63,7 @@
             label7 = new Label();
             Btn_DersListesi = new Button();
             Btn_NotListele = new Button();
+            btn_StoredProcedure = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             gb1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -396,11 +397,22 @@
             Btn_NotListele.UseVisualStyleBackColor = true;
             Btn_NotListele.Click += Btn_NotListele_Click;
             // 
+            // btn_StoredProcedure
+            // 
+            btn_StoredProcedure.Location = new Point(-2, 714);
+            btn_StoredProcedure.Name = "btn_StoredProcedure";
+            btn_StoredProcedure.Size = new Size(143, 44);
+            btn_StoredProcedure.TabIndex = 11;
+            btn_StoredProcedure.Text = "Procedure";
+            btn_StoredProcedure.UseVisualStyleBackColor = true;
+            btn_StoredProcedure.Click += btn_StoredProcedure_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(861, 717);
+            ClientSize = new Size(1125, 833);
+            Controls.Add(btn_StoredProcedure);
             Controls.Add(Btn_NotListele);
             Controls.Add(Btn_DersListesi);
             Controls.Add(groupBox2);
@@ -418,6 +430,7 @@
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
+            Click += Btn_NotListele_Click;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             gb1.ResumeLayout(false);
             gb1.PerformLayout();
@@ -465,5 +478,6 @@
         private Button Btn_NotListele;
         private Button btn_Sinav_notu_guncelle;
         private Button btn_ort_hesapla;
+        private Button btn_StoredProcedure;
     }
 }

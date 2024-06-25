@@ -1,4 +1,5 @@
-using Kurs.Models;
+using Kurs.Data;
+using Kurs.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kurs
@@ -185,11 +186,17 @@ namespace Kurs
                 MessageBox.Show("Güncelleme iþlemi gerçekleþmedi");
         }
 
-        
+
 
         private void Btn_Bul_Click(object sender, EventArgs e)
         {
+            dataGridView1.DataSource=_db.TblOgrencilers.Where(o=>o.Ad==txt_ogr_adi.Text).ToList();
+        }
 
+        private void btn_StoredProcedure_Click(object sender, EventArgs e)
+        {
+            var datas = _db.SPEntities.FromSqlRaw($"exec DurumTablo").ToList();
+            dataGridView1.DataSource= datas;
         }
     }
 }
