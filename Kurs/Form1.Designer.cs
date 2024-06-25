@@ -77,6 +77,7 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.Size = new Size(863, 300);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // btn_ogrListele
             // 
@@ -86,42 +87,47 @@
             btn_ogrListele.TabIndex = 1;
             btn_ogrListele.Text = "Öğrenci Listele";
             btn_ogrListele.UseVisualStyleBackColor = true;
+            btn_ogrListele.Click += btn_ogrListele_Click;
             // 
             // Btn_Kaydet
             // 
-            Btn_Kaydet.Location = new Point(-2, 366);
+            Btn_Kaydet.Location = new Point(-2, 509);
             Btn_Kaydet.Name = "Btn_Kaydet";
             Btn_Kaydet.Size = new Size(143, 44);
             Btn_Kaydet.TabIndex = 2;
             Btn_Kaydet.Text = "Kaydet";
             Btn_Kaydet.UseVisualStyleBackColor = true;
+            Btn_Kaydet.Click += Btn_Kaydet_Click;
             // 
             // Btn_Sil
             // 
-            Btn_Sil.Location = new Point(-2, 427);
+            Btn_Sil.Location = new Point(-2, 563);
             Btn_Sil.Name = "Btn_Sil";
             Btn_Sil.Size = new Size(143, 44);
             Btn_Sil.TabIndex = 3;
             Btn_Sil.Text = "Sil";
             Btn_Sil.UseVisualStyleBackColor = true;
+            Btn_Sil.Click += Btn_Sil_Click;
             // 
             // Btn_Guncelle
             // 
-            Btn_Guncelle.Location = new Point(-2, 486);
+            Btn_Guncelle.Location = new Point(-2, 613);
             Btn_Guncelle.Name = "Btn_Guncelle";
             Btn_Guncelle.Size = new Size(143, 44);
             Btn_Guncelle.TabIndex = 4;
             Btn_Guncelle.Text = "Güncelle";
             Btn_Guncelle.UseVisualStyleBackColor = true;
+            Btn_Guncelle.Click += Btn_Guncelle_Click;
             // 
             // Btn_Bul
             // 
-            Btn_Bul.Location = new Point(-2, 544);
+            Btn_Bul.Location = new Point(-2, 664);
             Btn_Bul.Name = "Btn_Bul";
             Btn_Bul.Size = new Size(143, 44);
             Btn_Bul.TabIndex = 5;
             Btn_Bul.Text = "Bul";
             Btn_Bul.UseVisualStyleBackColor = true;
+            Btn_Bul.Click += Btn_Bul_Click;
             // 
             // gb1
             // 
@@ -190,6 +196,7 @@
             // 
             // txt_ogr_id
             // 
+            txt_ogr_id.Enabled = false;
             txt_ogr_id.Location = new Point(94, 25);
             txt_ogr_id.Name = "txt_ogr_id";
             txt_ogr_id.Size = new Size(309, 26);
@@ -210,7 +217,7 @@
             groupBox1.Controls.Add(lbl_dersAdi);
             groupBox1.Controls.Add(txt_dersid);
             groupBox1.Controls.Add(lbl_dersid);
-            groupBox1.Location = new Point(147, 504);
+            groupBox1.Location = new Point(147, 502);
             groupBox1.Name = "groupBox1";
             groupBox1.Size = new Size(417, 123);
             groupBox1.TabIndex = 7;
@@ -235,6 +242,7 @@
             // 
             // txt_dersid
             // 
+            txt_dersid.Enabled = false;
             txt_dersid.Location = new Point(94, 25);
             txt_dersid.Name = "txt_dersid";
             txt_dersid.Size = new Size(309, 26);
@@ -370,16 +378,17 @@
             // 
             // Btn_DersListesi
             // 
-            Btn_DersListesi.Location = new Point(-2, 605);
+            Btn_DersListesi.Location = new Point(-2, 354);
             Btn_DersListesi.Name = "Btn_DersListesi";
             Btn_DersListesi.Size = new Size(143, 44);
             Btn_DersListesi.TabIndex = 9;
             Btn_DersListesi.Text = "Ders Listele";
             Btn_DersListesi.UseVisualStyleBackColor = true;
+            Btn_DersListesi.Click += Btn_DersListesi_Click;
             // 
             // Btn_NotListele
             // 
-            Btn_NotListele.Location = new Point(-2, 664);
+            Btn_NotListele.Location = new Point(-2, 413);
             Btn_NotListele.Name = "Btn_NotListele";
             Btn_NotListele.Size = new Size(143, 44);
             Btn_NotListele.TabIndex = 10;
