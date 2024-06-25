@@ -36,16 +36,38 @@ namespace Kurs
 
         private async Task NotListele()
         {
-            dataGridView1.DataSource = await _db.TblNotlars.Select(p => new
-            {
-                NotId = p.Id,
-                OgrenciId = p.OgrId,
-                p.Sinav1,
-                p.Sinav2,
-                p.Sinav3,
-                p.Ortalama,
-                p.Ders.Adi
-            }).ToListAsync();
+            //dataGridView1.DataSource = await _db.TblNotlars.
+            //    Select(p => new
+            //{
+            //    NotId = p.Id,
+            //    OgrenciId = p.OgrId,
+            //    p.Ogr.Ad,
+            //    p.Ogr.Soyad,
+            //    p.Sinav1,
+            //    p.Sinav2,
+            //    p.Sinav3,
+            //    p.Ortalama,
+            //    p.Ders.Adi
+            //}).ToListAsync();
+
+            var query = from not in _db.TblNotlars
+                        join ogrenci in _db.TblOgrencilers
+                        on not.OgrId equals ogrenci.Id
+                        join ders in _db.TblDerslers
+                        on not.DersId equals ders.Id
+                        select new
+                        {
+                            OGRENCI =ogrenci.Ad + " " + ogrenci.Soyad,
+                            DERS = ders.Adi,
+                            Sýnav1 =not.Sinav1,
+                            Sýnav2 =not.Sinav2,
+                            Sýnav3 =not.Sinav3,
+                            Ortalama = (not.Sinav1+not.Sinav2+not.Sinav3)/3,
+
+                            
+
+                        };
+            dataGridView1.DataSource=await query.ToListAsync();
         }
 
         private async void Btn_Kaydet_Click(object sender, EventArgs e)
@@ -190,13 +212,55 @@ namespace Kurs
 
         private void Btn_Bul_Click(object sender, EventArgs e)
         {
-            dataGridView1.DataSource=_db.TblOgrencilers.Where(o=>o.Ad==txt_ogr_adi.Text).ToList();
+            dataGridView1.DataSource = _db.TblOgrencilers.Where(o => o.Ad == txt_ogr_adi.Text).ToList();
         }
 
         private void btn_StoredProcedure_Click(object sender, EventArgs e)
         {
             var datas = _db.SPEntities.FromSqlRaw($"exec DurumTablo").ToList();
-            dataGridView1.DataSource= datas;
+            dataGridView1.DataSource = datas;
+        }
+
+        private void txt_ogr_adi_TextChanged(object sender, EventArgs e)
+        {
+            string search = txt_ogr_adi.Text;
+            var degerler = from data in _db.TblOgrencilers
+                           where data.Ad.Contains(search)
+                           select data;
+            dataGridView1.DataSource = degerler.ToList();
+        }
+
+        private void btn_linqEntity_Click(object sender, EventArgs e)
+        {
+            var ogrenciListe = _db.TblOgrencilers.OrderBy(p => p.Ad);
+
+            if (rb_A_Z.Checked)
+            {
+                dataGridView1.DataSource = ogrenciListe.ToList();
+            }
+            else if (rb_Z_A.Checked)
+            {
+                dataGridView1.DataSource = ogrenciListe.OrderByDescending(p=>p.Ad).ToList();
+            }
+            else if (rb_Top3.Checked)
+            {
+                dataGridView1.DataSource = ogrenciListe.Take(3).ToList();
+            }
+            else if (rb_Sinav1Ort.Checked) 
+            {
+                var data = _db.TblNotlars.Average(ort => ort.Sinav1);
+                MessageBox.Show($"Ortalama puan ={data}","Bilgi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rb_A_Z_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

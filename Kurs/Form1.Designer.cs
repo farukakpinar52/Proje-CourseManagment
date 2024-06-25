@@ -64,6 +64,11 @@
             Btn_DersListesi = new Button();
             Btn_NotListele = new Button();
             btn_StoredProcedure = new Button();
+            btn_linqEntity = new Button();
+            rb_A_Z = new RadioButton();
+            rb_Z_A = new RadioButton();
+            rb_Top3 = new RadioButton();
+            rb_Sinav1Ort = new RadioButton();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             gb1.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -185,6 +190,7 @@
             txt_ogr_adi.Name = "txt_ogr_adi";
             txt_ogr_adi.Size = new Size(309, 26);
             txt_ogr_adi.TabIndex = 17;
+            txt_ogr_adi.TextChanged += txt_ogr_adi_TextChanged;
             // 
             // label1
             // 
@@ -407,11 +413,72 @@
             btn_StoredProcedure.UseVisualStyleBackColor = true;
             btn_StoredProcedure.Click += btn_StoredProcedure_Click;
             // 
+            // btn_linqEntity
+            // 
+            btn_linqEntity.Location = new Point(882, 655);
+            btn_linqEntity.Name = "btn_linqEntity";
+            btn_linqEntity.Size = new Size(202, 53);
+            btn_linqEntity.TabIndex = 12;
+            btn_linqEntity.Text = "Linq Entity";
+            btn_linqEntity.UseVisualStyleBackColor = true;
+            btn_linqEntity.Click += btn_linqEntity_Click;
+            // 
+            // rb_A_Z
+            // 
+            rb_A_Z.AutoSize = true;
+            rb_A_Z.Location = new Point(867, 46);
+            rb_A_Z.Name = "rb_A_Z";
+            rb_A_Z.Size = new Size(217, 24);
+            rb_A_Z.TabIndex = 13;
+            rb_A_Z.TabStop = true;
+            rb_A_Z.Text = "İsme göre sırala (A-->Z)";
+            rb_A_Z.UseVisualStyleBackColor = true;
+            rb_A_Z.CheckedChanged += rb_A_Z_CheckedChanged;
+            // 
+            // rb_Z_A
+            // 
+            rb_Z_A.AutoSize = true;
+            rb_Z_A.Location = new Point(867, 91);
+            rb_Z_A.Name = "rb_Z_A";
+            rb_Z_A.Size = new Size(217, 24);
+            rb_Z_A.TabIndex = 14;
+            rb_Z_A.TabStop = true;
+            rb_Z_A.Text = "İsme göre sırala (Z-->A)";
+            rb_Z_A.UseVisualStyleBackColor = true;
+            rb_Z_A.CheckedChanged += radioButton2_CheckedChanged;
+            // 
+            // rb_Top3
+            // 
+            rb_Top3.AutoSize = true;
+            rb_Top3.Location = new Point(867, 141);
+            rb_Top3.Name = "rb_Top3";
+            rb_Top3.Size = new Size(194, 24);
+            rb_Top3.TabIndex = 15;
+            rb_Top3.TabStop = true;
+            rb_Top3.Text = "Listenin ilk 3 elemanı";
+            rb_Top3.UseVisualStyleBackColor = true;
+            // 
+            // rb_Sinav1Ort
+            // 
+            rb_Sinav1Ort.AutoSize = true;
+            rb_Sinav1Ort.Location = new Point(867, 184);
+            rb_Sinav1Ort.Name = "rb_Sinav1Ort";
+            rb_Sinav1Ort.Size = new Size(191, 24);
+            rb_Sinav1Ort.TabIndex = 16;
+            rb_Sinav1Ort.TabStop = true;
+            rb_Sinav1Ort.Text = "1.Sınavın Ortalaması";
+            rb_Sinav1Ort.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(10F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1125, 833);
+            Controls.Add(rb_Sinav1Ort);
+            Controls.Add(rb_Top3);
+            Controls.Add(rb_Z_A);
+            Controls.Add(rb_A_Z);
+            Controls.Add(btn_linqEntity);
             Controls.Add(btn_StoredProcedure);
             Controls.Add(Btn_NotListele);
             Controls.Add(Btn_DersListesi);
@@ -439,6 +506,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -479,5 +547,10 @@
         private Button btn_Sinav_notu_guncelle;
         private Button btn_ort_hesapla;
         private Button btn_StoredProcedure;
+        private Button btn_linqEntity;
+        private RadioButton rb_A_Z;
+        private RadioButton rb_Z_A;
+        private RadioButton rb_Top3;
+        private RadioButton rb_Sinav1Ort;
     }
 }
